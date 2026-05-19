@@ -27,7 +27,8 @@ export const config = {
   matcher: [
     // "/ideas/:id*",
     // "/dashboard/:path*",
-    "/ideas/:path",
+    // "/ideas/:path",
+    "/ideas/:id",
     "/add-idea",
     "/my-ideas",
     "/my-interactions",

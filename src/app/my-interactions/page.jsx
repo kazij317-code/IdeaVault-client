@@ -43,8 +43,19 @@ export default function MyInteractionsPage() {
     setMyComments(allComments);
   }, [session]);
 
-  const formatDate = (date) =>
-    new Date(date).toLocaleDateString("en-US");
+  // const formatDate = (date) =>
+  //   new Date(date).toLocaleDateString("en-US");
+
+  // Format ISO string to readable localized date (e.g., "May 16, 2026")
+      const formatDate = (isoString) => {
+          const date = new Date(isoString);
+          return date.toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+          });
+      };
+
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
