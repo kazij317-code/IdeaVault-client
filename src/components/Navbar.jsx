@@ -14,7 +14,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const router = useRouter();
-   const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => setMenuOpen(false);
 
   const { data: session, isPending } = authClient.useSession();
 
@@ -38,17 +38,16 @@ const Navbar = () => {
   };
   return (
     <nav
-      className={`sticky top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/70 backdrop-blur-md shadow-sm py-2"
-          : "bg-slate-50 py-4"
-      }`}
+      className={`sticky top-0 w-full z-50 transition-all duration-300 ${scrolled
+        ? "bg-white/70 backdrop-blur-md shadow-sm py-2"
+        : "bg-slate-50 py-4"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
 
           {/* Logo */}
-          <div ClassName="text-3xl text-blue-500">
+          <div className="text-3xl text-blue-500">
             Idea Vault
           </div>
 
@@ -56,8 +55,15 @@ const Navbar = () => {
           <div className="hidden md:flex gap-8 items-center">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/ideas">Ideas</NavLink>
+            {/* --------------- */}
+            <NavLink href="/add-idea">Add Idea</NavLink>
+            <NavLink href="/my-ideas">My Ideas</NavLink>
+            <NavLink href="/my-interactions">
+              My Interactions
+            </NavLink>
+            {/* --------------- */}
 
-            {session && (
+            {/* {session && (
               <>
                 <NavLink href="/add-idea">Add Idea</NavLink>
                 <NavLink href="/my-ideas">My Ideas</NavLink>
@@ -65,7 +71,7 @@ const Navbar = () => {
                   My Interactions
                 </NavLink>
               </>
-            )}
+            )} */}
           </div>
 
           {/* Desktop Right Side */}
@@ -89,7 +95,7 @@ const Navbar = () => {
                 </Link>
               </>
             ) : (
-              <div className="relative group">
+              <div className="relative group flex items-center">
                 <button className="flex items-center gap-3 p-1 rounded-full hover:bg-slate-100 transition-colors">
                   <Image
                     width={40}
@@ -106,11 +112,22 @@ const Navbar = () => {
                     <p className="text-sm font-bold truncate max-w-24">
                       {session?.user?.name}
                     </p>
-                    
+
                   </div>
-                  <FaChevronDown/>
+                  <FaChevronDown />
                 </button>
 
+                {/* --------------- */}
+                {/* <div>
+                  <button
+                    onClick={handleSignOut}
+                    className="px-4 py-2 text-sm text-red-500 hover:bg-red-50 flex items-center gap-3 text-left"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Log Out
+                  </button>
+                </div> */}
+                {/* --------------- */}
                 <div className="absolute right-0 top-12 w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl hidden group-hover:flex flex-col py-2 z-50">
                   <div className="px-4 py-3 border-b border-slate-100">
                     <p className="font-bold text-sm">
@@ -137,9 +154,22 @@ const Navbar = () => {
                     Log Out
                   </button>
                 </div>
+
               </div>
+
             )}
           </div>
+          {/* / ---------------  */}
+          {/* <div>
+                 <button
+                    onClick={handleSignOut}
+                    className="px-4 py-2 text-sm text-red-500 hover:bg-red-50 flex items-center gap-3 text-left"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Log Out
+                  </button>
+                </div> */}
+          {/* //  ---------------  */}
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
@@ -174,9 +204,31 @@ const Navbar = () => {
             Ideas
           </Link>
 
+          {/* ---------- */}
+          <Link
+            href="/add-idea" onClick={closeMenu}
+            className="block px-4 py-3 text-base font-medium hover:bg-slate-50 rounded-xl"
+          >
+            Add Idea
+          </Link>
+
+          <Link
+            href="/my-ideas" onClick={closeMenu}
+            className="block px-4 py-3 text-base font-medium hover:bg-slate-50 rounded-xl"
+          >
+            My Ideas
+          </Link>
+          <Link
+            href="/my-interactions" onClick={closeMenu}
+            className="block px-4 py-3 text-base font-medium hover:bg-slate-50 rounded-xl"
+          >
+            My Interactions
+          </Link>
+          {/* ---------- */}
+
           {session && (
             <>
-              <Link
+              {/* <Link
                 href="/add-idea" onClick={closeMenu}
                 className="block px-4 py-3 text-base font-medium hover:bg-slate-50 rounded-xl"
               >
@@ -194,7 +246,7 @@ const Navbar = () => {
                 className="block px-4 py-3 text-base font-medium hover:bg-slate-50 rounded-xl"
               >
                 My Interactions
-              </Link>
+              </Link> */}
               <Link
                 href="/profile" onClick={closeMenu}
                 className="block px-4 py-3 text-base font-medium hover:bg-slate-50 rounded-xl"

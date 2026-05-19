@@ -18,7 +18,7 @@ import {
   Separator,
 } from "@heroui/react";
 import { FcGoogle } from "react-icons/fc";
-import GoogleLogin from "../components/GoogleLogin";
+import GoogleLogin from "@/components/GoogleLogin";
 
 const RegisterPage = () => {
   const router = useRouter();

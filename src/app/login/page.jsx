@@ -131,7 +131,7 @@
 // ---------------------End:53_3-(1) to () --------------------------------
 "use client";
 
-import GoogleLogin from "@/app/components/GoogleLogin";
+import GoogleLogin from "@/components/GoogleLogin";
 import { authClient } from "@/lib/auth-client";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -156,7 +156,7 @@ export default function LoginPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const callbackURL = searchParams.get("callbackUrl") || "/";
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -168,10 +168,11 @@ export default function LoginPage() {
   email: user.email,
   password: user.password,
   rememberMe: true,
-  callbackURL,
+  callbackUrl,
   fetchOptions: {
     onSuccess: () => {
-      router.push(callbackURL);
+      toast.success("Login successful");
+      router.push(callbackUrl);
       router.refresh();
     },
   },
@@ -182,11 +183,11 @@ export default function LoginPage() {
       return;
     }
 
-    if (res) {
-      toast.success("Login successful");
-      router.push(callbackURL);
-      router.refresh();
-    }
+    // if (res) {
+    //   toast.success("Login successful");
+    //   router.push(callbackUrL);
+    //   router.refresh();
+    // }
   };
 
   // const handleGoogleSignin = async () => {

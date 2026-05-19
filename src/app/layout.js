@@ -1,8 +1,8 @@
 import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import { Toaster } from "react-hot-toast";
+import Navbar from "@/components/Navbar";
+
+
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -34,16 +34,18 @@ export default function RootLayout({ children }) {
       lang="en"
       // className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       
-      className={`${josefin.className} h-full antialiased`}
+      className={`${josefin.className} h-full antialiased light`}
+      data-theme="light"
+      suppressHydrationWarning
     >
       
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
         
         <Navbar/>
-        <Toaster />
-        {children}
         
-        <Footer/>
+        <main className="grow">{children}</main>
+        
+        
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { UpdateUserModal } from "@/app/components/UpdateUserModal";
+import { UpdateUserModal } from "@/components/UpdateUserModal";
 import { authClient } from "@/lib/auth-client";
 import { Avatar, Card } from "@heroui/react";
 import { redirect } from "next/navigation";
