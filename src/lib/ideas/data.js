@@ -3,3 +3,10 @@ export const fetchIdeas = async() => {
     const data = res.json();
     return data || [];
 }
+
+
+export const fetchFeaturedIdeas = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/featured`);
+  const data = await res.json();
+  return data || [];
+};

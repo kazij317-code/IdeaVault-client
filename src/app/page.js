@@ -1,10 +1,9 @@
-
-
+import FeaturedIdeas from '@/components/FeaturedIdeas';
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       
-      THIS IS HOME PAGE
+      <FeaturedIdeas />
       
     </div>
   );
