@@ -129,9 +129,12 @@ export default async function IdeaDetails({ params }) {
                     </div>
                 )}
 
-                <CommentsSection ideaId={_id} />
+                <CommentsSection 
+                ideaId={_id} 
+                ideaTitle={title}
+                />
 
-                <div className="flex flex-wrap gap-4 pt-8 border-t border-slate-200">
+                {/* <div className="flex flex-wrap gap-4 pt-8 border-t border-slate-200">
                     {featuredItems.map((item, i) => (
                         <div
                             key={i}
@@ -141,7 +144,7 @@ export default async function IdeaDetails({ params }) {
                             <span className='text-slate-900'>{item.label}</span>
                         </div>
                     ))}
-                </div>
+                </div> */}
             </div>
         </div>
     );

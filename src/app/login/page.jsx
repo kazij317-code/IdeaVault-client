@@ -132,7 +132,7 @@
 "use client";
 
 import GoogleLogin from "@/components/GoogleLogin";
-import { authClient } from "@/lib/auth-client";
+import { authClient, signIn } from "@/lib/auth-client";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -177,6 +177,9 @@ export default function LoginPage() {
     },
   },
 });
+
+// const {data: tokenData} = await authClient.token()
+// console.log(tokenData)
 
     if (error) {
       toast.error(error.message);

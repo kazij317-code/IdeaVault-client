@@ -5,7 +5,7 @@ import { useSession } from "@/lib/auth-client";
 import { MessageSquare, User } from "lucide-react";
 import toast from "react-hot-toast";
 
-export default function CommentsSection({ ideaId }) {
+export default function CommentsSection({ ideaId, ideaTitle }) {
     const { data: session } = useSession();
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
@@ -36,6 +36,8 @@ export default function CommentsSection({ ideaId }) {
 
         const commentObject = {
             id: Date.now().toString(),
+            ideaId,
+            ideaTitle: ideaTitle, // add this
             userName: session?.user?.name || "Guest User",
             userEmail: session?.user?.email || "guest@example.com",
             userImage: session?.user?.image || null,
