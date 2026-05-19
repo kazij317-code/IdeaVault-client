@@ -1,22 +1,27 @@
-
+import { auth } from '@/lib/auth';
 import { Chip } from '@heroui/react';
 import { BookOpen, Clock, BarChart, Users, AlertTriangle, CheckCircle2, Tag } from 'lucide-react';
-
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import CommentsSection from '@/components/CommentsSection';
 
-
-const fetchSingleIdea = async (id) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ideas/${id}`);
-
+const fetchSingleIdea = async (id, token) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ideas/${id}`, {
+        headers: {
+            authorization: `Bearer ${token}` || ""
+        }
+    });
     const data = await res.json();
     return data || {};
 }
+
 export default async function IdeaDetails({ params }) {
-
     const { id } = await params;
+    const { token } = await auth.api.getToken({
+        headers: await headers(),
+    });
 
-    const idea = await fetchSingleIdea(id);
+    const idea = await fetchSingleIdea(id, token);
     const {
         _id,
         enrollCount,
@@ -120,7 +125,7 @@ export default async function IdeaDetails({ params }) {
                         {proposedSolution && (
                             <div className="p-6 bg-emerald-50/50 border border-emerald-100 rounded-3xl space-y-2 hover:shadow-md transition-shadow">
                                 <h3 className="text-lg font-bold text-emerald-950 flex items-center gap-2.5">
-                                    <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                                    <CheckCircle2 className="w-5 h-5 text-emerald-600" />
                                     Proposed Solution
                                 </h3>
                                 <p className="text-emerald-900/80 leading-relaxed font-medium">{proposedSolution}</p>
@@ -129,12 +134,9 @@ export default async function IdeaDetails({ params }) {
                     </div>
                 )}
 
-                <CommentsSection
-                    ideaId={_id}
-                    ideaTitle={title}
-                />
+                <CommentsSection ideaId={_id} />
 
-                {/* <div className="flex flex-wrap gap-4 pt-8 border-t border-slate-200">
+                <div className="flex flex-wrap gap-4 pt-8 border-t border-slate-200">
                     {featuredItems.map((item, i) => (
                         <div
                             key={i}
@@ -144,7 +146,7 @@ export default async function IdeaDetails({ params }) {
                             <span className='text-slate-900'>{item.label}</span>
                         </div>
                     ))}
-                </div> */}
+                </div>
             </div>
         </div>
     );
