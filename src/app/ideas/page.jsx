@@ -6,7 +6,7 @@ import { BookOpen, Filter } from "lucide-react";
 
 
 const IdeasPage = async () => {
-    
+
     const ideas = await fetchIdeas();
     // console.log(ideas);
 
