@@ -1,0 +1,226 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useSession } from "@/lib/auth-client";
+import { MessageSquare, User } from "lucide-react";
+import toast from "react-hot-toast";
+
+export default function CommentsSection({ ideaId }) {
+    const { data: session } = useSession();
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState("");
+    const [isMounted, setIsMounted] = useState(false);
+    const [editingCommentId, setEditingCommentId] = useState(null);
+    const [editCommentText, setEditCommentText] = useState("");
+
+    // Ensure localStorage is only accessed on the client side
+    useEffect(() => {
+        setIsMounted(true);
+        const stored = localStorage.getItem(`comments_${ideaId}`);
+        if (stored) {
+            try {
+                setComments(JSON.parse(stored));
+            } catch (e) {
+                console.error("Failed to parse comments", e);
+            }
+        }
+    }, [ideaId]);
+
+    const handlePostComment = (e) => {
+        e.preventDefault();
+
+        if (!newComment.trim()) {
+            toast.error("Comment cannot be empty!");
+            return;
+        }
+
+        const commentObject = {
+            id: Date.now().toString(),
+            userName: session?.user?.name || "Guest User",
+            userEmail: session?.user?.email || "guest@example.com",
+            userImage: session?.user?.image || null,
+            content: newComment.trim(),
+            createdAt: new Date().toISOString(),
+        };
+
+        const updatedComments = [commentObject, ...comments];
+        setComments(updatedComments);
+        localStorage.setItem(`comments_${ideaId}`, JSON.stringify(updatedComments));
+        setNewComment("");
+        toast.success("Comment posted successfully!");
+    };
+
+    const handleDeleteComment = (commentId) => {
+        const updatedComments = comments.filter((c) => c.id !== commentId);
+        setComments(updatedComments);
+        localStorage.setItem(`comments_${ideaId}`, JSON.stringify(updatedComments));
+        toast.success("Comment deleted successfully!");
+    };
+
+    const handleStartEdit = (comment) => {
+        setEditingCommentId(comment.id);
+        setEditCommentText(comment.content);
+    };
+
+    const handleSaveEdit = (commentId) => {
+        if (!editCommentText.trim()) {
+            toast.error("Comment cannot be empty!");
+            return;
+        }
+
+        const updatedComments = comments.map((c) => {
+            if (c.id === commentId) {
+                return { ...c, content: editCommentText.trim() };
+            }
+            return c;
+        });
+
+        setComments(updatedComments);
+        localStorage.setItem(`comments_${ideaId}`, JSON.stringify(updatedComments));
+        setEditingCommentId(null);
+        setEditCommentText("");
+        toast.success("Comment updated successfully!");
+    };
+
+    const handleCancelEdit = () => {
+        setEditingCommentId(null);
+        setEditCommentText("");
+    };
+
+    // Format ISO string to readable localized date (e.g., "May 16, 2026")
+    const formatCommentDate = (isoString) => {
+        const date = new Date(isoString);
+        return date.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+        });
+    };
+
+    // Return empty during SSR to prevent hydration mismatch
+    if (!isMounted) {
+        return null;
+    }
+
+    return (
+        <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-xl space-y-6 mt-8">
+            <div className="flex items-center gap-2">
+                <MessageSquare className="w-6 h-6 text-indigo-600" />
+                <h3 className="text-xl font-bold text-slate-900">
+                    Comments ({comments.length})
+                </h3>
+            </div>
+
+            <form onSubmit={handlePostComment} className="space-y-4 flex flex-col items-start">
+                <textarea
+                    placeholder="Add your comment..."
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                    className="w-full min-h-[100px] text-base p-4 border border-slate-200 hover:border-slate-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-2xl bg-slate-50/50 outline-none text-slate-800 font-medium placeholder-slate-400 transition-all resize-none shadow-inner"
+                />
+
+                <button
+                    type="submit"
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-md shadow-indigo-600/10 transition-all active:scale-[0.98] h-11 cursor-pointer text-sm"
+                >
+                    Post Comment
+                </button>
+            </form>
+
+            {comments.length > 0 && (
+                <div className="pt-6 border-t border-slate-100 space-y-6 max-h-[450px] overflow-y-auto pr-2 custom-scrollbar">
+                    {comments.map((comment) => {
+                        const initials = comment.userName
+                            .split(" ")
+                            .map((n) => n[0])
+                            .slice(0, 2)
+                            .join("")
+                            .toUpperCase();
+
+                        const isEditing = editingCommentId === comment.id;
+
+                        return (
+                            <div
+                                key={comment.id}
+                                className="flex gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-md transition-all duration-300 group"
+                            >
+                                <div className="flex-shrink-0">
+                                    {comment.userImage ? (
+                                        <img
+                                            src={comment.userImage}
+                                            alt={comment.userName}
+                                            className="w-10 h-10 rounded-full object-cover border-2 border-indigo-100 shadow-sm"
+                                        />
+                                    ) : (
+                                        <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm border border-indigo-200 shadow-inner group-hover:bg-indigo-200 transition-colors">
+                                            {initials || <User className="w-4 h-4" />}
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="space-y-1 flex-1">
+                                    <div className="flex items-center justify-between">
+                                        <h4 className="font-bold text-slate-800 text-base leading-tight">
+                                            {comment.userName}
+                                        </h4>
+                                        <div className="flex items-center">
+                                            {isEditing ? (
+                                                <>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleSaveEdit(comment.id)}
+                                                        className="text-indigo-600 hover:text-indigo-800 font-bold text-sm transition-colors cursor-pointer mr-3"
+                                                    >
+                                                        Save
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={handleCancelEdit}
+                                                        className="text-slate-500 hover:text-slate-700 font-bold text-sm transition-colors cursor-pointer"
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleStartEdit(comment)}
+                                                        className="text-slate-500 hover:text-slate-700 font-bold text-sm transition-colors cursor-pointer mr-3"
+                                                    >
+                                                        Edit
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleDeleteComment(comment.id)}
+                                                        className="text-red-500 hover:text-red-700 font-bold text-sm transition-colors cursor-pointer"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+                                    {isEditing ? (
+                                        <textarea
+                                            value={editCommentText}
+                                            onChange={(e) => setEditCommentText(e.target.value)}
+                                            className="w-full min-h-[60px] text-sm p-3 border border-slate-200 hover:border-slate-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-xl bg-white outline-none text-slate-800 font-medium placeholder-slate-400 transition-all resize-none mt-1.5 shadow-inner"
+                                        />
+                                    ) : (
+                                        <p className="text-sm text-slate-600 font-medium leading-relaxed break-words whitespace-pre-wrap pt-0.5">
+                                            {comment.content}
+                                        </p>
+                                    )}
+                                    <span className="text-xs text-slate-400 font-semibold block pt-1">
+                                        {formatCommentDate(comment.createdAt)}
+                                    </span>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
+        </div>
+    );
+}
