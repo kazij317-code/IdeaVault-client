@@ -1,14 +1,20 @@
 import IdeaCard from "@/components/IdeaCard";
 import IdeasHeader from "@/components/IdeasHeader";
-import { fetchIdeas } from "@/lib/ideas/data";
+// import { fetchIdeas } from "@/lib/ideas/data";
 import { Button } from "@heroui/react";
 import { BookOpen, Filter } from "lucide-react";
 
 
 const IdeasPage = async () => {
 
-    const ideas = await fetchIdeas();
+    // const ideas = await fetchIdeas();
     // console.log(ideas);
+    // const fetchIdeas = async() => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ideas`)
+    const ideas = await res.json();
+    console.log(ideas)
+    
+
 
 
     return (
