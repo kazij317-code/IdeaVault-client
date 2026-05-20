@@ -28,8 +28,8 @@ const RegisterPage = () => {
     e.preventDefault();
 
     const formData = Object.fromEntries(
-  new FormData(e.currentTarget)
-);
+      new FormData(e.currentTarget)
+    );
     const { name, image, email, password } = formData;
 
     const { data: res, error } = await authClient.signUp.email({
@@ -54,270 +54,116 @@ const RegisterPage = () => {
     }
   };
 
-// const handleGoogleSignin = async() => {
-//   await authClient.signIn.social({
-//     provider: "google"
-//   })
-// }
-
   return (
-  <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4">
-    <div className="w-full max-w-md">
-      
-      
+    /* Decreased container height to 70vh and reduced vertical padding */
+    <div className="min-h-[70vh] bg-slate-100 dark:bg-[#0b0f17] flex items-center justify-center px-4 py-4 transition-colors duration-300">
+      <div className="w-full max-w-md">
 
-      <Card className="p-8 shadow-xl rounded-2xl border bg-white">
-        <div className="text-center mb-6">
-        <h1 className="text-3xl font-bold">
-          Register your account
-        </h1>
-        <p className="text-gray-500 mt-2">
-          Start your journey with IdeaVault
-        </p>
-      </div>
-        <Form
-          onSubmit={handleRegisterFunc}
-          className="flex flex-col gap-4"
-        >
-          <TextField isRequired name="name" type="text">
-            <Label>Your Name</Label>
-            <Input placeholder="Enter your name" />
-            <FieldError />
-          </TextField>
-
-          <TextField isRequired name="image" type="url">
-            <Label>Photo URL</Label>
-            <Input placeholder="Attach your photo" />
-            <FieldError />
-          </TextField>
-
-          <TextField
-            isRequired
-            name="email"
-            type="email"
+        {/* Decreased inner padding to p-5 for a tighter vertical structure */}
+        <Card className="p-5 shadow-xl rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f1319] text-slate-900 dark:text-white transition-colors duration-300">
+          {/* Reduced margin-bottom */}
+          <div className="text-center mb-4">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+              Register your account
+            </h1>
+            <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
+              Start your journey with IdeaVault
+            </p>
+          </div>
+          
+          {/* Reduced gap between form fields */}
+          <Form
+            onSubmit={handleRegisterFunc}
+            className="flex flex-col gap-3"
           >
-            <Label>Email Address</Label>
-            <Input placeholder="Enter your email address" />
-            <FieldError />
-          </TextField>
+            <TextField isRequired name="name" type="text">
+              <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Your Name</Label>
+              <Input placeholder="Enter your name" className="text-slate-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm" />
+              <FieldError className="text-rose-500 text-xs" />
+            </TextField>
 
-          <TextField
-            isRequired
-            minLength={8}
-            name="password"
-          >
-            <Label>Password</Label>
+            <TextField isRequired name="image" type="url">
+              <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Photo URL</Label>
+              <Input placeholder="Attach your photo" className="text-slate-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm" />
+              <FieldError className="text-rose-500 text-xs" />
+            </TextField>
 
-            <div className="relative">
-              <Input
-                type={isShowPassword ? "text" : "password"}
-                placeholder="Enter your password"
-              />
+            <TextField
+              isRequired
+              name="email"
+              type="email"
+            >
+              <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Email Address</Label>
+              <Input placeholder="Enter your email address" className="text-slate-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm" />
+              <FieldError className="text-rose-500 text-xs" />
+            </TextField>
 
-              <span
-                onClick={() =>
-                  setIsShowPassword(!isShowPassword)
-                }
-                className="absolute right-3 top-3 cursor-pointer"
-              >
-                {isShowPassword ? (
-                  <FaEye />
-                ) : (
-                  <FaEyeSlash />
-                )}
-              </span>
+            <TextField
+              isRequired
+              minLength={8}
+              name="password"
+            >
+              <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Password</Label>
+
+              <div className="relative">
+                <Input
+                  type={isShowPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  className="text-slate-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 w-full text-sm"
+                />
+
+                <span
+                  onClick={() =>
+                    setIsShowPassword(!isShowPassword)
+                  }
+                  className="absolute right-3 top-3 cursor-pointer text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                >
+                  {isShowPassword ? (
+                    <FaEye />
+                  ) : (
+                    <FaEyeSlash />
+                  )}
+                </span>
+              </div>
+
+              <Description className="text-gray-400 dark:text-slate-500 text-[11px] leading-tight mt-0.5">
+                Must be at least 8 characters with 1 uppercase and 1 number
+              </Description>
+              <FieldError className="text-rose-500 text-xs" />
+            </TextField>
+
+            <Button
+              className="w-full h-12 font-bold rounded-xl text-white bg-gradient-to-r from-[#1d63ed] via-[#653df5] to-[#a426e7] hover:opacity-95 shadow-lg shadow-purple-500/10 transition-all active:scale-[0.99] cursor-pointer mt-2"
+              type="submit"
+            >
+              Register
+            </Button>
+          </Form>
+
+          {/* Compressed margin spaces below form */}
+          <p className="mt-4 text-center text-xs text-slate-600 dark:text-slate-400">
+            Already have an account?{" "}
+            <Link
+              href="/login"
+              className="text-red-600 dark:text-red-400 font-semibold hover:underline"
+            >
+              Login
+            </Link>
+          </p>
+
+          <div className="flex justify-center items-center gap-3 my-3 text-gray-400 dark:text-slate-500">
+            <Separator className="bg-gray-200 dark:bg-slate-800" />
+            <div className="whitespace-nowrap text-xs font-medium">
+              Or 
             </div>
+            <Separator className="bg-gray-200 dark:bg-slate-800" />
+          </div>
 
-            <Description>
-              Must be at least 8 characters with
-              1 uppercase and 1 number
-            </Description>
-            <FieldError />
-          </TextField>
-
-          <Button
-            className="w-full bg-slate-800 text-white rounded-xl"
-            type="submit"
-          >
-            Register
-          </Button>
-        </Form>
-
-        <p className="mt-6 text-center text-sm">
-          Already have an account?{" "}
-          <Link
-            href="/login"
-            className="text-red-600 font-semibold"
-          >
-            Login
-          </Link>
-        </p>
-
-        <div className="flex justify-center items-center gap-3 my-4">
-                  <Separator />
-                  <div className="whitespace-nowrap">
-                    Or 
-                  </div>
-                  <Separator />
-                </div>
-
-        <GoogleLogin />
-      </Card>
+          <GoogleLogin />
+        </Card>
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default RegisterPage;
-
-
-// -----------------------
-
-// "use client";
-// import { FcGoogle } from "react-icons/fc";
-// import { Card, Separator } from "@heroui/react";
-
-// import {
-//   Button,
-//   Description,
-//   FieldError,
-//   Form,
-//   Input,
-//   Label,
-//   TextField,
-// } from "@heroui/react";
-// import { authClient } from "@/lib/auth-client";
-// import { redirect } from "next/navigation";
-
-// const SignUpPage = () => {
-    
-//   const onSubmit = async (e) => {
-//     e.preventDefault();
-
-//     const formData = new FormData(e.currentTarget);
-//     const user = Object.fromEntries(formData.entries());
-
-    
-//     const { data, error } = await authClient.signUp.email
-//     ({
-//       email: user.email,
-//       password: user.password,
-//       name: user.name,
-//       // image: user.image,
-//     });
-//     console.log({data, error})
-
-//     if (data) {
-//       redirect("/");
-//     }
-
-//     if (error) {
-//       // toast
-//       alert("Error");
-//     }
-//   };
-
-
-// // (6)st
-// const handleGoogleSignin = async() => {
-//   await authClient.signIn.social({
-//     provider: "google"
-//   })
-// }
-// // (6)en
-
-
-//   return (
-    
-//     <div className="max-w-7xl mx-auto">
-//       <div className="text-center my-3">
-//         <h1 className="text-2xl font-bold">Create Account</h1>
-//         <p>Start your adventure with Wanderlust</p>
-//       </div>
-//       <Card className="border rounded-none">
-        
-//         <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4">
-//           <TextField isRequired name="name" type="text">
-//             <Label>Name</Label>
-//             <Input placeholder="Enter your name" />
-//             <FieldError />
-//           </TextField>
-
-//           <TextField name="image" type="url">
-//             <Label>Image URL</Label>
-//             <Input placeholder="Image url" />
-//             <FieldError />
-//           </TextField>
-
-//           <TextField
-//             isRequired
-//             name="email"
-//             type="email"
-//             validate={(value) => {
-//               if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-//                 return "Please enter a valid email address";
-//               }
-//               return null;
-//             }}
-//           >
-//             <Label>Email</Label>
-//             <Input placeholder="john@example.com" />
-//             <FieldError />
-//           </TextField>
-//           <TextField
-//             isRequired
-//             minLength={8}
-//             name="password"
-//             type="password"
-//             validate={(value) => {
-//               if (value.length < 8) {
-//                 return "Password must be at least 8 characters";
-//               }
-//               if (!/[A-Z]/.test(value)) {
-//                 return "Password must contain at least one uppercase letter";
-//               }
-//               if (!/[0-9]/.test(value)) {
-//                 return "Password must contain at least one number";
-//               }
-//               return null;
-//             }}
-//           >
-//             <Label>Password</Label>
-//             <Input placeholder="Enter your password" />
-//             <Description>
-//               Must be at least 8 characters with 1 uppercase and 1 number
-//             </Description>
-//             <FieldError />
-//           </TextField>
-//           <div className="flex justify-center gap-2">
-//             <Button className={"rounded-none w-full bg-cyan-500"} type="submit">
-//               Create Account
-//             </Button>
-//           </div>
-//         </Form>
-//           {/* (5)st */}
-//           <div className="flex justify-center items-center gap-3">
-//             <Separator/>
-//              <div className="whitespace-nowrap">
-//               Or sign up with
-//              </div>
-//             <Separator/>
-//           </div>
-//           <div>
-//             {/* <Button variant="outline" className={'w=full rounded-none'}> */}
-//             {/* (7) then check then in Navbar*/}
-//             <Button onClick={handleGoogleSignin} variant="outline" className={'w-full rounded-none'}>
-//              <FcGoogle/> Sign in with Google
-//             </Button>
-//           </div>
-//           {/* (5)en */}
-
-//       </Card>
-//     </div>
-    
-//   );
-// };
-
-// export default SignUpPage;
-
-// ---------------------End:53_2-(1) to () --------------------------------
