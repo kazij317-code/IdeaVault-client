@@ -2,7 +2,7 @@ import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "react-hot-toast";
-
+import Footer from "@/components/Footer";
 
 
 // const geistSans = Geist({
@@ -45,6 +45,7 @@ export default function RootLayout({ children }) {
         <Navbar/>
         
         <main className="grow">{children}</main>
+        <Footer/>
         <Toaster />
         
       </body>

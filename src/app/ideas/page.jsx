@@ -5,10 +5,13 @@ import { Button } from "@heroui/react";
 import { BookOpen, Filter } from "lucide-react";
 
 
-const IdeasPage = async () => {
+const IdeasPage = async ({ searchParams }) => {
+    // console.log(searchParams);
+    const sParams = await searchParams;
+    // console.log(sParams);
 
-    const ideas = await fetchIdeas();
-    console.log(ideas);
+
+    const ideas = await fetchIdeas(sParams?.searchTerm || "", sParams?.category || "");
     
     
 

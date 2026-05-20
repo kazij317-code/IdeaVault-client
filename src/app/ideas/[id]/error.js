@@ -1,5 +1,4 @@
-// -----------------------------Start: 54_10---------------------------------------
-// (4)st
+
 "use client";
 
 import { RefreshCcw, AlertCircle, Home } from "lucide-react";
@@ -66,5 +65,3 @@ const ErrorPage = ({ error, reset }) => {
 };
 
 export default ErrorPage;
-// (4)en
-// ---------------------End:54_10-(1) to () --------------------------------
