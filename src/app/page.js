@@ -1,6 +1,7 @@
 import FeaturedIdeas from '@/components/FeaturedIdeas';
 import Features from '@/components/Features';
 import Hero from '@/components/Hero';
+import PopularCategories from '@/components/PopularCategories';
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <FeaturedIdeas />
 
+      <PopularCategories/>
       <Features />
     </div>
   );
