@@ -9,6 +9,7 @@ import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import NavLink from "./NavLink";
 import { FaChevronDown } from "react-icons/fa";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,6 +63,7 @@ const Navbar = () => {
               My Interactions
             </NavLink>
             {/* --------------- */}
+            
 
             {/* {session && (
               <>
@@ -72,6 +74,12 @@ const Navbar = () => {
                 </NavLink>
               </>
             )} */}
+          </div>
+          <div className="flex items-center gap-4">
+            {/* Navigation Links can go here */}
+
+            {/* Theme Toggle Button */}
+            <ThemeToggle />
           </div>
 
           {/* Desktop Right Side */}

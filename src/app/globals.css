@@ -1,2 +1,12 @@
 @import "tailwindcss";
 @import "@heroui/styles";
+
+
+
+
+
+
+/* 1. Tell Tailwind v4.0 to handle dark classes globally */
+@variant dark (&:where(.dark, .dark *));
+
+/* 2. Set your custom base typography font configurations if needed */
