@@ -4,9 +4,29 @@
 
 
 
+.swiper-button-next,
+.swiper-button-prev {
+  color: #4f46e5 !important;
+  transform: scale(0.7);
+  transition: color 0.3s;
+}
 
+.dark .swiper-button-next,
+.dark .swiper-button-prev {
+  color: #a78bfa !important;
+}
 
-/* 1. Tell Tailwind v4.0 to handle dark classes globally */
-@variant dark (&:where(.dark, .dark *));
+.swiper-pagination-bullet-active {
+  background: #4f46e5 !important;
+  width: 24px !important;
+  border-radius: 4px !important;
+  transition: all 0.3s;
+}
 
-/* 2. Set your custom base typography font configurations if needed */
+.dark .swiper-pagination-bullet-active {
+  background: #a78bfa !important;
+}
+
+.swiper-pagination-bullet {
+  background: #94a3b8;
+}

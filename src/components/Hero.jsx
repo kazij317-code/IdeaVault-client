@@ -23,7 +23,7 @@ const Hero = () => {
             <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none hidden dark:block" />
 
             {/* Global Theme Overrides for Swiper Custom CSS Interface bullets/arrows */}
-            <style jsx global>{`
+            {/* <style jsx global>{`
                 .swiper-button-next, .swiper-button-prev {
                     color: #4f46e5 !important;
                     transform: scale(0.7);
@@ -44,7 +44,7 @@ const Hero = () => {
                 .swiper-pagination-bullet {
                     background: #94a3b8;
                 }
-            `}</style>
+            `}</style> */}
 
             <Swiper
                 key="hero-carousel-loop"

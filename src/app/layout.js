@@ -25,7 +25,10 @@ const josefin = Josefin_Sans({
 // });
 
 export const metadata = {
-  title: "IdeaVault - Share & Validate Startup Ideas",
+  title: {
+    default: "IdeaVault",
+    template: "%s | IdeaVault",
+  },
   description: "Share and validate your startup ideas.",
 };
 
