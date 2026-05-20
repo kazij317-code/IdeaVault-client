@@ -65,7 +65,8 @@ export function UpdateUserModal() {
                       Full Name
                     </Label>
                     <Input 
-                      placeholder="Enter your name" 
+                      placeholder="Enter your name"
+                       
                       classNames={{
                         inputWrapper: "bg-slate-50/50 dark:bg-[#0b0f17]/50 border border-slate-200 dark:border-slate-800 h-12 rounded-xl focus-within:!border-blue-600 dark:focus-within:!border-purple-500 transition-colors",
                         input: "text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm font-medium",
