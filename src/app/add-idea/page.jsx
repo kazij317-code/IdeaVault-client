@@ -293,14 +293,25 @@ export default function AddIdeaPage() {
                             <label htmlFor="problemStatement" className="text-sm font-bold text-slate-700 ml-1">
                                 Problem Statement <span className="text-red-500">*</span>
                             </label>
-                            <TextArea
+                            {/* <TextArea
                                 id="problemStatement"
                                 name="problemStatement"
                                 required
                                 placeholder="What is the key pain point or problem this idea attempts to address?"
                                 startContent={<AlertTriangle className="w-5 h-5 text-slate-400 mt-1" />}
                                 className="w-full border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl"
-                            />
+                            /> */}
+                            <div className="relative">
+                                <AlertTriangle className="absolute top-4 left-4 w-5 h-5 text-slate-400 z-10" />
+
+                                <TextArea
+                                    id="problemStatement"
+                                    name="problemStatement"
+                                    required
+                                    placeholder="What is the key pain point or problem this idea attempts to address?"
+                                    className="w-full border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl pl-12"
+                                />
+                            </div>
                         </div>
 
                         {/* Proposed Solution */}
@@ -308,14 +319,25 @@ export default function AddIdeaPage() {
                             <label htmlFor="proposedSolution" className="text-sm font-bold text-slate-700 ml-1">
                                 Proposed Solution <span className="text-red-500">*</span>
                             </label>
-                            <TextArea
+                            {/* <TextArea
                                 id="proposedSolution"
                                 name="proposedSolution"
                                 required
                                 placeholder="How does your idea solve the problem statement described above?"
                                 startContent={<CheckCircle2 className="w-5 h-5 text-slate-400 mt-1" />}
                                 className="w-full border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl"
-                            />
+                            /> */}
+                            <div className="relative">
+                                <CheckCircle2 className="absolute top-4 left-4 w-5 h-5 text-slate-400 z-10" />
+
+                                <TextArea
+                                    id="proposedSolution"
+                                    name="proposedSolution"
+                                    required
+                                    placeholder="How does your idea solve the problem statement described above?"
+                                    className="w-full border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl pl-12"
+                                />
+                            </div>
                         </div>
 
                     </div>

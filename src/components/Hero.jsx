@@ -66,7 +66,7 @@ const Hero = () => {
                                 <div className="absolute -inset-1 bg-linear-to-r from-primary to-blue-600 rounded-[2.5rem] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
                                 <div className="relative bg-white p-2 rounded-[2.5rem] shadow-2xl overflow-hidden aspect-video lg:aspect-square">
                                     <Image
-                                        src="https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=1200&auto=format&fit=crop"
+                                        src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600"
                                         alt="AI Innovations"
                                         fill
                                         className="rounded-[2rem] object-cover transform transition duration-700 group-hover:scale-105"
