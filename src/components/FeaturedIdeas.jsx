@@ -16,9 +16,7 @@ const FeaturedIdeas = async () => {
                     <div className="space-y-4">
                         <h2 className="text-blue-600 font-bold uppercase tracking-widest text-sm">Top Rated</h2>
                         <h3 className="text-4xl font-extrabold text-slate-900">Trending Ideas</h3>
-                        {/* <p className="text-slate-500 max-w-xl">
-                            Handpicked premium ideas designed to help you master the most in-demand skills in the industry today.
-                        </p> */}
+                        
                     </div>
                     <Button
                         variant="flat"
