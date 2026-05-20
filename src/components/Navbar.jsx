@@ -38,21 +38,20 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 w-full z-50 transition-all duration-300 border-b ${
-        scrolled
+      className={`sticky top-0 w-full z-50 transition-all duration-300 border-b ${scrolled
           ? "bg-white/70 dark:bg-[#0b0f19]/70 backdrop-blur-md shadow-sm border-slate-200/50 dark:border-gray-800/50 py-2"
           : "bg-slate-50 dark:bg-[#0b0f19] border-transparent py-4"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          
+
           {/* Logo Branding */}
           {/* <Link href="/" className="text-2xl font-black tracking-tight text-slate-900 dark:text-white transition-colors duration-200">
             Idea<span className="text-blue-500 dark:text-blue-400">Vault</span>
           </Link> */}
 
-<div className="lg:col-span-4 space-y-5">
+          <div className="lg:col-span-4 space-y-5">
             <div className="flex items-center gap-3 group">
               <div className="p-2.5 bg-slate-100 dark:bg-gradient-to-br dark:from-purple-600/20 dark:to-blue-600/20 rounded-xl border border-slate-200 dark:border-purple-500/30 group-hover:border-purple-400 transition-colors duration-300">
                 <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -63,7 +62,7 @@ const Navbar = () => {
                 Idea<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400">Vault</span>
               </span>
             </div>
-            
+
           </div>
           {/* Desktop Core Menu Links */}
           <div className="hidden md:flex gap-6 lg:gap-8 items-center">
@@ -100,45 +99,59 @@ const Navbar = () => {
             ) : (
               /* User Session Dropdown Management Wrapper */
               <div className="relative group flex items-center">
-                <button className="flex items-center gap-2.5 p-1.5 rounded-full hover:bg-slate-200/50 dark:hover:bg-gray-800/50 text-slate-700 dark:text-gray-300 transition-colors cursor-pointer">
+                <button className="flex items-center gap-3 p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                   <Image
-                    width={36}
-                    height={36}
+                    width={40}
+                    height={40}
                     src={
                       session?.user?.image ||
                       "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=400"
                     }
-                    alt="user profile avatar image"
-                    className="w-9 h-9 rounded-full object-cover ring-2 ring-slate-200 dark:ring-gray-800"
+                    alt="avatar"
+                    className="w-10 h-10 rounded-full object-cover"
                   />
+
                   <div className="text-left hidden lg:block">
-                    <p className="text-xs font-bold text-slate-900 dark:text-white truncate max-w-24">
+                    <p className="text-sm font-bold truncate max-w-24 text-slate-900 dark:text-white">
                       {session?.user?.name}
                     </p>
                   </div>
-                  <FaChevronDown className="w-3 h-3 opacity-70 group-hover:rotate-180 transition-transform duration-300" />
+                  <FaChevronDown className="text-slate-700 dark:text-slate-300" />
                 </button>
 
-                {/* Dropdown Floating Menu Overlay Element */}
-                <div className="absolute right-0 top-full mt-2 w-56 bg-white dark:bg-gray-900/90 backdrop-blur-xl border border-slate-200 dark:border-gray-800/80 rounded-2xl shadow-2xl hidden group-hover:flex flex-col py-2 z-50 transform origin-top-right transition-all duration-200 animate-in fade-in slide-in-from-top-2">
-                  <div className="px-4 py-3 border-b border-slate-100 dark:border-gray-800/60">
-                    <p className="font-bold text-xs text-slate-400 uppercase tracking-wider">Welcome back!</p>
-                    <p className="text-sm font-semibold text-slate-900 dark:text-white truncate mt-0.5">
+                {/* --------------- */}
+                {/* <div>
+    <button
+      onClick={handleSignOut}
+      className="px-4 py-2 text-sm text-red-500 hover:bg-red-50 flex items-center gap-3 text-left"
+    >
+      <LogOut className="w-4 h-4" />
+      Log Out
+    </button>
+  </div> */}
+                {/* --------------- */}
+
+                <div className="absolute right-0 top-12 w-56 bg-white dark:bg-[#0f1319] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl hidden group-hover:flex flex-col py-2 z-50 transition-colors duration-300">
+                  <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-800/60">
+                    <p className="font-bold text-sm text-slate-900 dark:text-white">
+                      Welcome back!
+                    </p>
+                    <p className="text-xs truncate text-slate-500 dark:text-slate-400">
                       {session?.user?.email}
                     </p>
                   </div>
 
                   <Link
                     href="/profile"
-                    className="px-4 py-2.5 text-sm font-medium text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-800/60 flex items-center gap-3 transition-colors"
+                    className="px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-3 transition-colors"
                   >
-                    <User className="w-4 h-4 text-slate-400" />
+                    <User className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                     My Profile
                   </Link>
 
                   <button
                     onClick={handleSignOut}
-                    className="px-4 py-2.5 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 flex items-center gap-3 text-left w-full cursor-pointer transition-colors"
+                    className="px-4 py-2 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 flex items-center gap-3 text-left w-full transition-colors"
                   >
                     <LogOut className="w-4 h-4" />
                     Log Out

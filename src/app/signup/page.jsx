@@ -17,7 +17,6 @@ import {
   Description,
   Separator,
 } from "@heroui/react";
-import { FcGoogle } from "react-icons/fc";
 import GoogleLogin from "@/components/GoogleLogin";
 
 const RegisterPage = () => {
@@ -27,9 +26,7 @@ const RegisterPage = () => {
   const handleRegisterFunc = async (e) => {
     e.preventDefault();
 
-    const formData = Object.fromEntries(
-      new FormData(e.currentTarget)
-    );
+    const formData = Object.fromEntries(new FormData(e.currentTarget));
     const { name, image, email, password } = formData;
 
     const { data: res, error } = await authClient.signUp.email({
@@ -55,111 +52,122 @@ const RegisterPage = () => {
   };
 
   return (
-    /* Decreased container height to 70vh and reduced vertical padding */
-    <div className="min-h-[70vh] bg-slate-100 dark:bg-[#0b0f17] flex items-center justify-center px-4 py-4 transition-colors duration-300">
+    <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-[#0b1120] dark:via-[#111827] dark:to-[#1e1b4b] transition-all duration-500">
+
       <div className="w-full max-w-md">
 
-        {/* Decreased inner padding to p-5 for a tighter vertical structure */}
-        <Card className="p-5 shadow-xl rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f1319] text-slate-900 dark:text-white transition-colors duration-300">
-          {/* Reduced margin-bottom */}
-          <div className="text-center mb-4">
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
-              Register your account
+        <Card className="backdrop-blur-xl bg-white/70 dark:bg-white/5 border border-white/30 dark:border-white/10 shadow-2xl rounded-3xl p-8 transition-all duration-300">
+
+          {/* Header */}
+          <div className="text-center mb-7">
+            
+
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
+              Create Account
             </h1>
-            <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
-              Start your journey with IdeaVault
+
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+              Start your journey with <span className="font-semibold text-purple-600">IdeaVault</span>
             </p>
           </div>
-          
-          {/* Reduced gap between form fields */}
+
+          {/* Form */}
           <Form
             onSubmit={handleRegisterFunc}
-            className="flex flex-col gap-3"
+            className="flex flex-col gap-4"
           >
             <TextField isRequired name="name" type="text">
-              <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Your Name</Label>
-              <Input placeholder="Enter your name" className="text-slate-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm" />
-              <FieldError className="text-rose-500 text-xs" />
+              <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Full Name
+              </Label>
+              <Input
+                placeholder="Enter your name"
+                className="rounded-xl h-12 mt-1"
+              />
+              <FieldError className="text-red-500 text-xs" />
             </TextField>
 
             <TextField isRequired name="image" type="url">
-              <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Photo URL</Label>
-              <Input placeholder="Attach your photo" className="text-slate-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm" />
-              <FieldError className="text-rose-500 text-xs" />
+              <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Photo URL
+              </Label>
+              <Input
+                placeholder="Paste your image link"
+                className="rounded-xl h-12 mt-1"
+              />
+              <FieldError className="text-red-500 text-xs" />
             </TextField>
 
-            <TextField
-              isRequired
-              name="email"
-              type="email"
-            >
-              <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Email Address</Label>
-              <Input placeholder="Enter your email address" className="text-slate-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm" />
-              <FieldError className="text-rose-500 text-xs" />
+            <TextField isRequired name="email" type="email">
+              <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Email Address
+              </Label>
+              <Input
+                placeholder="Enter your email"
+                className="rounded-xl h-12 mt-1"
+              />
+              <FieldError className="text-red-500 text-xs" />
             </TextField>
 
-            <TextField
-              isRequired
-              minLength={8}
-              name="password"
-            >
-              <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Password</Label>
+            <TextField isRequired minLength={6} name="password">
+              <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Password
+              </Label>
 
-              <div className="relative">
+              <div className="relative mt-1">
                 <Input
                   type={isShowPassword ? "text" : "password"}
-                  placeholder="Enter your password"
-                  className="text-slate-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 w-full text-sm"
+                  placeholder="Enter password"
+                  className="rounded-xl h-12 pr-10"
                 />
 
                 <span
-                  onClick={() =>
-                    setIsShowPassword(!isShowPassword)
-                  }
-                  className="absolute right-3 top-3 cursor-pointer text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                  onClick={() => setIsShowPassword(!isShowPassword)}
+                  className="absolute right-4 top-4 cursor-pointer text-gray-500 hover:text-purple-600 transition"
                 >
-                  {isShowPassword ? (
-                    <FaEye />
-                  ) : (
-                    <FaEyeSlash />
-                  )}
+                  {isShowPassword ? <FaEye /> : <FaEyeSlash />}
                 </span>
               </div>
 
-              <Description className="text-gray-400 dark:text-slate-500 text-[11px] leading-tight mt-0.5">
-                Must be at least 8 characters with 1 uppercase and 1 number
+              <Description className="text-xs text-gray-500 mt-1">
+                Must contain 6+ characters, 1 uppercase & 1 number
               </Description>
-              <FieldError className="text-rose-500 text-xs" />
+
+              <FieldError className="text-red-500 text-xs" />
             </TextField>
 
             <Button
-              className="w-full h-12 font-bold rounded-xl text-white bg-gradient-to-r from-[#1d63ed] via-[#653df5] to-[#a426e7] hover:opacity-95 shadow-lg shadow-purple-500/10 transition-all active:scale-[0.99] cursor-pointer mt-2"
               type="submit"
+              className="w-full h-12 mt-3 rounded-xl text-white font-bold text-base bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:scale-[1.02] active:scale-[0.98] shadow-lg transition-all duration-300 cursor-pointer"
             >
-              Register
+              Create Account
             </Button>
           </Form>
 
-          {/* Compressed margin spaces below form */}
-          <p className="mt-4 text-center text-xs text-slate-600 dark:text-slate-400">
+          {/* Login */}
+          <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
             Already have an account?{" "}
             <Link
               href="/login"
-              className="text-red-600 dark:text-red-400 font-semibold hover:underline"
+              className="text-purple-600 font-semibold hover:underline"
             >
               Login
             </Link>
           </p>
 
-          <div className="flex justify-center items-center gap-3 my-3 text-gray-400 dark:text-slate-500">
-            <Separator className="bg-gray-200 dark:bg-slate-800" />
-            <div className="whitespace-nowrap text-xs font-medium">
-              Or 
-            </div>
-            <Separator className="bg-gray-200 dark:bg-slate-800" />
+          {/* Divider */}
+          <div className="flex items-center gap-4 my-6">
+            <Separator className="flex-1" />
+            <span className="text-xs uppercase text-gray-400 font-semibold">
+              Or
+            </span>
+            <Separator className="flex-1" />
           </div>
 
-          <GoogleLogin />
+          {/* Google */}
+          <div className="border rounded-xl p-1 hover:shadow-md transition">
+            <GoogleLogin />
+          </div>
         </Card>
       </div>
     </div>
