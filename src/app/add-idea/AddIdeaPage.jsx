@@ -118,7 +118,7 @@ export default function AddIdeaPage() {
 
       if (res.ok) {
         toast.success('Idea published successfully!');
-        router.push('/my-ideas');
+        router.push('/');
         router.refresh();
       } else {
         const data = await res.json();
@@ -220,12 +220,11 @@ export default function AddIdeaPage() {
                 onSelectionChange={setSelectedCategory}
                 placeholder="Select category"
                 classNames={{
-                  trigger: "bg-slate-50/50 dark:bg-[#0b0f17]/50 border border-slate-200 dark:border-slate-800 data-[hover=true]:border-slate-300 dark:data-[hover=true]:border-slate-700 focus-within:!border-blue-600 dark:focus-within:!border-purple-500 w-full",
+                  trigger: "bg-slate-50/50 dark:bg-[#0b0f17]/50 border border-slate-200 dark:border-slate-800 data-[hover=true]:border-slate-300 dark:data-[hover=true]:border-slate-700 focus-within:!border-blue-600 dark:focus-within:!border-purple-500",
                   value: "text-slate-800 dark:text-white font-medium",
                 }}
               >
-                {/* FIX: Moved layout styling safely into the Select wrapper classes to stop DOM bleeding */}
-                <SelectTrigger>
+                <SelectTrigger className="w-full">
                   <div className="flex items-center gap-2">
                     <List className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                     <SelectValue placeholder="Select category" />
@@ -327,6 +326,7 @@ export default function AddIdeaPage() {
                 Problem Statement
               </label>
               <div className="relative">
+                <AlertTriangle className="absolute top-4 left-4 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" />
                 <TextArea
                   id="problemStatement"
                   name="problemStatement"
@@ -347,6 +347,7 @@ export default function AddIdeaPage() {
                 Proposed Solution
               </label>
               <div className="relative">
+                <CheckCircle2 className="absolute top-4 left-4 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" />
                 <TextArea
                   id="proposedSolution"
                   name="proposedSolution"
