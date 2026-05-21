@@ -17,4 +17,3 @@ export const fetchFeaturedIdeas = async () => {
   const data = await res.json();
   return data || [];
 };
-

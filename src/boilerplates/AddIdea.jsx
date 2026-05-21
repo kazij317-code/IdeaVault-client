@@ -37,7 +37,7 @@ const CATEGORIES = [
     'Education',
 ];
 
-export default function AddIdeaPage() {
+export default function AddIdea() {
     const { data: session, isPending } = useSession();
     const router = useRouter();
 

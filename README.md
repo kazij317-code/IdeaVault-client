@@ -1,82 +1,36 @@
-# 💡 Idea Vault – Idea Sharing & Management Platform
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Getting Started
 
-## 📌 Project Purpose
-Idea Vault is a modern idea-sharing and management platform where users can create, share, and explore innovative ideas. It is designed to encourage collaboration, creativity, and feedback through likes, comments, bookmarking, and trending ideas discovery.
-
-This platform helps users organize their thoughts and discover new ideas in a clean, interactive, and responsive environment.
-
-
----
-## 📸 Screenshot
-
-![Idea Vault Screenshot](./public/p1.png)
-
----
-
-
-## 🌐 Live URL
-https://idea-vault-client-teal.vercel.app
-
----
-
-## ✨ Key Features
-💡 Create, edit, and delete ideas
-🔥 Trending ideas system (based on likes + recent activity)
-❤️ Like and interaction system
-🔖 Bookmark favorite ideas
-💬 Comment system for discussions
-🔐 Secure authentication system (login/register) and authorization
-👤 User profile management
-📊 Dynamic idea feed with filtering and sorting
-📱 Fully responsive UI (mobile, tablet, desktop)
-⚡ Fast and optimized performance with Next.js
-
----
-
-## 🛠️ Technologies Used
-Next.js (App Router)
-React.js
-Tailwind CSS
-MongoDB / Backend API
-NextAuth / Better Auth (Authentication)
-Vercel (Deployment)
-
----
-
-## 📦 NPM Packages Used
-- `next`
-- `react`
-- `react-dom`
-- `tailwindcss`
-- `mongodb`
-- `next-auth` / `better-auth`
-- `react-fast-marquee`
-- `react-icons`
-- `lottie-react`
-- `React-Spring`
-
----
-
-## 🚀 Installation & Setup
+First, run the development server:
 
 ```bash
-# Clone the repository
-git clone https://github.com/kazij317-code/IdeaVault-client
-
-# Go to project folder
-cd qurbani-hat
-
-# Install dependencies
-npm install
-
-# Run the project
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-📌 Future Improvements
-🚀 AI-based idea suggestions
-📈 Advanced analytics for trending ideas
-👥 Team collaboration workspaces
-🌍 Public/private idea visibility options
-🔍 Advanced search & tagging system
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
