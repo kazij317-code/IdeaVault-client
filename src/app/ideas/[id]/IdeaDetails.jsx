@@ -6,11 +6,14 @@ import Image from 'next/image';
 import CommentsSection from '@/components/CommentsSection';
 
 const fetchSingleIdea = async (id, token) => {
+    if (!token) return null;
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ideas/${id}`, {
         headers: {
             authorization: `Bearer ${token}` || ""
         }
     });
+    if (!res.ok) return null; //add new
+
     const data = await res.json();
     return data || {};
 }
@@ -22,27 +25,27 @@ export default async function IdeaDetails({ params }) {
     });
 
     const idea = await fetchSingleIdea(id, token);
+// add new---------------------------
+// FIX: If the backend returned an error or 401, render the NotFound / Login state
+    if (!idea || idea.message === "Unauthorize") {
+        return <NotFound />;
+    }
+// -------------------------------
+
     const {
         _id,
-        enrollCount,
         title,
         shortDescription,
         thumbnail,
         description,
-        category,
-        price,
+        category,        
         tags,
         targetAudience,
         problemStatement,
         proposedSolution,
-        instructor
     } = idea;
 
-    // const featuredItems = [
-    //     { icon: Clock, label: 'Active Idea' },
-    //     { icon: BarChart, label: category || 'General' },
-    //     { icon: Users, label: `${enrollCount || 0} Backers / Members` },
-    // ];
+   
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-[#0b0f17] text-slate-900 dark:text-white transition-colors duration-300">
@@ -149,17 +152,7 @@ export default async function IdeaDetails({ params }) {
                         <CommentsSection ideaId={_id} />
                     </div>
 
-                    {/* <div className="flex flex-wrap gap-4 pt-8 border-t border-slate-200">
-                        {featuredItems.map((item, i) => (
-                            <div
-                                key={i}
-                                className="flex items-center gap-3 bg-slate-50 px-6 py-3 rounded-2xl border border-slate-200 text-slate-900 font-bold hover:bg-white hover:shadow-lg transition-all duration-300"
-                            >
-                                <item.icon className="w-5 h-5 text-blue-600" />
-                                <span className='text-slate-900'>{item.label}</span>
-                            </div>
-                        ))}
-                    </div> */}
+                    
                 </div>
             </div>
         </div>
