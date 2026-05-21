@@ -48,7 +48,7 @@ export default async function IdeaDetails({ params }) {
         <div className="min-h-screen bg-slate-50 dark:bg-[#0b0f17] text-slate-900 dark:text-white transition-colors duration-300">
             <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
                 <div className="space-y-8 text-left">
-                    
+
                     {/* Thumbnail Image Wrapper */}
                     <div className="relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-video border border-transparent dark:border-slate-800/60">
                         <Image
@@ -93,9 +93,13 @@ export default async function IdeaDetails({ params }) {
                                     variant="flat"
                                     size="sm"
                                     className="font-bold bg-purple-50 text-purple-700 dark:bg-purple-950/30 dark:text-purple-300 border border-transparent dark:border-purple-800/30"
-                                    startContent={<Tag className="w-3.5 h-3.5 mr-0.5" />}
                                 >
-                                    {tag.trim().startsWith('#') ? tag.trim() : `#${tag.trim()}`}
+                                    <div className="flex items-center gap-1">
+                                        <Tag className="w-3.5 h-3.5" />
+                                        {tag.trim().startsWith('#')
+                                            ? tag.trim()
+                                            : `#${tag.trim()}`}
+                                    </div>
                                 </Chip>
                             ))}
                         </div>
@@ -104,7 +108,7 @@ export default async function IdeaDetails({ params }) {
                     {/* Technical Specification details Layout Block */}
                     {(targetAudience || problemStatement || proposedSolution) && (
                         <div className="space-y-6 pt-8 border-t border-slate-200 dark:border-slate-800/60">
-                            
+
                             {/* Target Audience Block */}
                             {targetAudience && (
                                 <div className="p-6 bg-white dark:bg-[#0f1319] border border-slate-200 dark:border-slate-800/80 rounded-3xl space-y-2 hover:shadow-md dark:hover:shadow-blue-500/5 transition-all">
