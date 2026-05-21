@@ -4,6 +4,11 @@ import { fetchIdeas } from "@/lib/ideas/data";
 import { Button } from "@heroui/react";
 import { BookOpen, Filter } from "lucide-react";
 
+export const metadata = {
+  title: "Ideas",
+};
+
+
 const IdeasPage = async ({ searchParams }) => {
     // console.log(searchParams);
     const sParams = await searchParams;
