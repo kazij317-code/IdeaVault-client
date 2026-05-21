@@ -28,7 +28,7 @@ const SearchBar = () => {
     router.push(`/ideas?${params.toString()}`)
   }
 
-  return (
+   return (
     <div className="relative flex items-center bg-white border border-slate-200 rounded-2xl shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-blue-600 transition-all overflow-hidden">
 
       <div className="pl-5 text-slate-400">

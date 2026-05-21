@@ -118,7 +118,7 @@ export default function AddIdeaPage() {
 
       if (res.ok) {
         toast.success('Idea published successfully!');
-        router.push('/');
+        router.push('/my-ideas');
         router.refresh();
       } else {
         const data = await res.json();
@@ -326,7 +326,7 @@ export default function AddIdeaPage() {
                 Problem Statement
               </label>
               <div className="relative">
-                <AlertTriangle className="absolute top-4 left-4 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" />
+                {/* <AlertTriangle className="absolute top-4 left-4 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" /> */}
                 <TextArea
                   id="problemStatement"
                   name="problemStatement"
@@ -347,7 +347,7 @@ export default function AddIdeaPage() {
                 Proposed Solution
               </label>
               <div className="relative">
-                <CheckCircle2 className="absolute top-4 left-4 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" />
+                {/* <CheckCircle2 className="absolute top-4 left-4 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" /> */}
                 <TextArea
                   id="proposedSolution"
                   name="proposedSolution"

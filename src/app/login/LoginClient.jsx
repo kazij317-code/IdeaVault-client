@@ -106,7 +106,7 @@ export default function LoginClient() {
               <Input
                 autoComplete="off"
                 placeholder="john@example.com"
-                classNames={{
+                className={{
                   inputWrapper:
                     "bg-white/70 dark:bg-white/5 border border-gray-200 dark:border-white/10 h-12 rounded-xl backdrop-blur-md",
                   input:
