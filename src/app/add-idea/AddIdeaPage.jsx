@@ -211,7 +211,7 @@ export default function AddIdeaPage() {
             </div>
 
             {/* Category */}
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <label className="text-sm font-bold text-slate-700 dark:text-slate-300">
                 Category
               </label>
@@ -245,6 +245,39 @@ export default function AddIdeaPage() {
                     ))}
                   </ListBox>
                 </SelectPopover>
+              </Select>
+            </div> */}
+            {/* Category */}
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-slate-700 dark:text-slate-300">
+                Category
+              </label>
+
+              <Select
+                name="category"
+                placeholder="Select category"
+                selectedKeys={selectedCategory}
+                onSelectionChange={setSelectedCategory}
+                className="w-full"
+                classNames={{
+                  trigger:
+                    "bg-slate-50/50 dark:bg-[#0b0f17]/50 border border-slate-200 dark:border-slate-800 data-[hover=true]:border-slate-300 dark:data-[hover=true]:border-slate-700 focus-within:!border-blue-600 dark:focus-within:!border-purple-500",
+                  value: "text-slate-800 dark:text-white font-medium",
+                  popoverContent:
+                    "bg-white dark:bg-[#0f1319] border border-slate-200 dark:border-slate-800 rounded-xl",
+                }}
+                startContent={
+                  <List className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+                }
+              >
+                {CATEGORIES.map((cat) => (
+                  <ListBoxItem
+                    key={cat}
+                    className="data-[hover=true]:bg-slate-100 dark:data-[hover=true]:bg-[#0b0f17]/60 rounded-lg"
+                  >
+                    {cat}
+                  </ListBoxItem>
+                ))}
               </Select>
             </div>
 
