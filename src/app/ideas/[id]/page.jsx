@@ -22,20 +22,22 @@ export async function generateMetadata({ params }) {
     }
 
     const idea = await res.json();
+
     return {
       title: idea?.title || "Idea Details",
       description: idea?.shortDescription || "",
     };
   } catch (error) {
     console.error("Metadata fetch error:", error);
-    return { title: "Idea Details" };
+    return {
+      title: "Idea Details",
+    };
   }
 }
-
 
 // Make the Page component async and await params before passing it down
 export default async function Page({ params }) {
   const resolvedParams = await params;
-
+  
   return <IdeaDetails params={resolvedParams} />;
 }
