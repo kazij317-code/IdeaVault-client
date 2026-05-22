@@ -82,6 +82,8 @@ export default function AddIdeaPage() {
       const { data: jwtData } = await authClient.token();
       const token = jwtData?.token;
 
+      console.log(token);
+
       if (!token) {
         toast.error('Authentication failed');
         setLoading(false);
@@ -108,6 +110,7 @@ export default function AddIdeaPage() {
         `${process.env.NEXT_PUBLIC_API_URL}/ideas`,
         {
           method: 'POST',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
@@ -116,12 +119,13 @@ export default function AddIdeaPage() {
         }
       );
 
+      const data = await res.json();
+
       if (res.ok) {
         toast.success('Idea published successfully!');
-        router.push('/');
+        router.push('/my-ideas');
         router.refresh();
       } else {
-        const data = await res.json();
         toast.error(data.message || 'Failed to publish idea');
       }
     } catch (error) {
@@ -326,7 +330,7 @@ export default function AddIdeaPage() {
                 Problem Statement
               </label>
               <div className="relative">
-                <AlertTriangle className="absolute top-4 left-4 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" />
+                {/* <AlertTriangle className="absolute top-4 left-4 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" /> */}
                 <TextArea
                   id="problemStatement"
                   name="problemStatement"
@@ -347,7 +351,7 @@ export default function AddIdeaPage() {
                 Proposed Solution
               </label>
               <div className="relative">
-                <CheckCircle2 className="absolute top-4 left-4 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" />
+                {/* <CheckCircle2 className="absolute top-4 left-4 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" /> */}
                 <TextArea
                   id="proposedSolution"
                   name="proposedSolution"

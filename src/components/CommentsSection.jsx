@@ -34,10 +34,21 @@ export default function CommentsSection({ ideaId, ideaTitle }) {
             return;
         }
 
+        // 🛡️ SELF-HEALING FALLBACK LAYER:
+        // If the parent failed to pass 'ideaTitle', look directly at the page's <h1> 
+        // tag where your MongoDB title ("MediScan AI..." or "MindBridge...") is rendered.
+        let verifiedTitle = ideaTitle;
+        if (!verifiedTitle || verifiedTitle.trim() === "") {
+            const pageHeading = document.querySelector("h1");
+            if (pageHeading && pageHeading.textContent) {
+                verifiedTitle = pageHeading.textContent.trim();
+            }
+        }
+
         const commentObject = {
             id: Date.now().toString(),
             ideaId,
-            ideaTitle: ideaTitle,
+            ideaTitle: verifiedTitle || "Idea Workspace",
             userName: session?.user?.name || "Guest User",
             userEmail: session?.user?.email || "guest@example.com",
             userImage: session?.user?.image || null,
@@ -167,7 +178,7 @@ export default function CommentsSection({ ideaId, ideaTitle }) {
                                 <div className="space-y-1 flex-1 min-w-0">
                                     <div className="flex items-center justify-between gap-4">
                                         <h4 className="font-bold text-slate-800 dark:text-slate-200 text-base leading-tight truncate">
-                                            {comment.userName}
+                                            {comment.ideaTitle || "Idea Workspace"}
                                         </h4>
                                         
                                         {/* Action Buttons Layer */}
@@ -209,6 +220,11 @@ export default function CommentsSection({ ideaId, ideaTitle }) {
                                             )}
                                         </div>
                                     </div>
+
+                                    {/* Author Label Subtitle */}
+                                    <span className="text-xs text-slate-400 dark:text-slate-500 block font-medium">
+                                        By {comment.userName}
+                                    </span>
 
                                     {/* Display content view versus update input view */}
                                     {isEditing ? (
