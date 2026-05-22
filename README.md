@@ -16,7 +16,7 @@ This platform helps users organize their thoughts and discover new ideas in a cl
 
 
 ## 🌐 Live URL
-https://idea-vault-client-teal.vercel.app
+https://idea-vault-client-xi.vercel.app
 
 ---
 
@@ -65,7 +65,7 @@ Vercel (Deployment)
 git clone https://github.com/kazij317-code/IdeaVault-client
 
 # Go to project folder
-cd qurbani-hat
+cd IdeaVault-client
 
 # Install dependencies
 npm install
