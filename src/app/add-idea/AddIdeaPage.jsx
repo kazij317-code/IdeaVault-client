@@ -326,6 +326,7 @@ export default function AddIdeaPage() {
                 Problem Statement
               </label>
               <div className="relative">
+                {/* <AlertTriangle className="absolute top-4 left-4 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" /> */}
                 <TextArea
                   id="problemStatement"
                   name="problemStatement"
@@ -333,7 +334,7 @@ export default function AddIdeaPage() {
                   placeholder="What problem does this idea solve?"
                   className="w-full"
                   classNames={{
-                    inputWrapper: "bg-slate-50/50 dark:bg-[#0b0f17]/50 border-slate-200 dark:border-slate-800 focus-within:!border-blue-600 dark:focus-within:!border-purple-500",
+                    inputWrapper: "bg-slate-50/50 dark:bg-[#0b0f17]/50 border-slate-200 dark:border-slate-800 focus-within:!border-blue-600 dark:focus-within:!border-purple-500 pl-12",
                     input: "text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500",
                   }}
                 />
@@ -346,6 +347,7 @@ export default function AddIdeaPage() {
                 Proposed Solution
               </label>
               <div className="relative">
+                {/* <CheckCircle2 className="absolute top-4 left-4 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" /> */}
                 <TextArea
                   id="proposedSolution"
                   name="proposedSolution"
@@ -353,14 +355,13 @@ export default function AddIdeaPage() {
                   placeholder="Describe your solution..."
                   className="w-full"
                   classNames={{
-                    inputWrapper: "bg-slate-50/50 dark:bg-[#0b0f17]/50 border-slate-200 dark:border-slate-800 focus-within:!border-blue-600 dark:focus-within:!border-purple-500",
+                    inputWrapper: "bg-slate-50/50 dark:bg-[#0b0f17]/50 border-slate-200 dark:border-slate-800 focus-within:!border-blue-600 dark:focus-within:!border-purple-500 pl-12",
                     input: "text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500",
                   }}
                 />
               </div>
             </div>
 
-            {/* End of layout grid */}
           </div>
 
           {/* Buttons */}
