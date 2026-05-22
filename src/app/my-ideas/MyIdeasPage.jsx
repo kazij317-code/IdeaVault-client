@@ -28,9 +28,10 @@ export default async function MyIdeasPage() {
       <h1 className="text-3xl font-bold mb-8">My Ideas</h1>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {ideas?.map((idea) => (
-          <MyIdeaCard key={idea._id} idea={idea} />
-        ))}
+        {Array.isArray(ideas) &&
+          ideas.map((idea) => (
+            <MyIdeaCard key={idea._id} idea={idea} />
+          ))}
       </div>
     </div>
   );
