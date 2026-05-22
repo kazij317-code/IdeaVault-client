@@ -6,7 +6,7 @@ import { jwt } from 'better-auth/plugins';
 const client = new MongoClient(process.env.MONGODB_URI);
 // console.log("MONGO:", process.env.MONGODB_URI);
 
-await client.connect()//optional add
+// await client.connect()//optional add
 const db = client.db("ideavault");
 
 export const auth = betterAuth({

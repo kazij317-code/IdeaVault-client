@@ -110,7 +110,7 @@ export default function AddIdeaPage() {
         `${process.env.NEXT_PUBLIC_API_URL}/ideas`,
         {
           method: 'POST',
-          credentials: 'include',
+          // credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
@@ -119,13 +119,14 @@ export default function AddIdeaPage() {
         }
       );
 
-      const data = await res.json();
+      // const data = await res.json();
 
       if (res.ok) {
         toast.success('Idea published successfully!');
         router.push('/my-ideas');
         router.refresh();
       } else {
+        const data = await res.json();
         toast.error(data.message || 'Failed to publish idea');
       }
     } catch (error) {

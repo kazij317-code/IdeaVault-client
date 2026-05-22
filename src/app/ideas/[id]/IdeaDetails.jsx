@@ -11,24 +11,19 @@ import Image from 'next/image';
 import CommentsSection from '@/components/CommentsSection';
 
 const fetchSingleIdea = async (id, token) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/ideas/${id}`,
-    {
-      cache: "no-store",
-      headers: {
-        authorization: token ? `Bearer ${token}` : "",
-      },
-    }
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ideas/${id}`, {
+        headers: {
+            authorization: `Bearer ${token}` || ""
+        }
+    });
+    if (!res.ok) return null; //add new
 
-  if (!res.ok) return null;
-
-  const data = await res.json();
-  return data || null;
-};
+    const data = await res.json();
+    return data || {};
+}
 
 export default async function IdeaDetails({ params }) {
-  const { id } = params;
+  const { id } = await params;
 
   const { token } = await auth.api.getToken({
     headers: await headers(),
