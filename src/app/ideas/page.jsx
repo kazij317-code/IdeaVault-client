@@ -5,7 +5,7 @@ import { Button } from "@heroui/react";
 import { BookOpen, Filter } from "lucide-react";
 
 export const metadata = {
-  title: "Ideas",
+    title: "Ideas",
 };
 
 
@@ -30,7 +30,7 @@ const IdeasPage = async ({ searchParams }) => {
                         <BookOpen className="w-6 h-6 text-blue-600 dark:text-purple-400 transition-colors" />
                         All Ideas
                     </h2>
-                    
+
                     <Button
                         variant="flat"
                         startContent={<Filter className="w-4 h-4" />}
@@ -41,13 +41,33 @@ const IdeasPage = async ({ searchParams }) => {
                 </div>
 
                 {/* Main Content Grid Area */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {
                         ideas?.map((idea) => (
                             <IdeaCard key={idea._id} idea={idea} />
                         ))
                     }
+                </div> */}
+                {/* ----------------- */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {ideas?.length > 0 ? (
+                        ideas.map((idea) => (
+                            <IdeaCard key={idea._id} idea={idea} />
+                        ))
+                    ) : (
+                        <div className="col-span-full py-20 text-center">
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-700 dark:text-white">
+                                No Idea Found
+                            </h2>
+                            <p className="mt-2 text-slate-500 dark:text-slate-400">
+                                Try searching with a different keyword or category.
+                            </p>
+                        </div>
+                    )}
                 </div>
+                {/* ----------------- */}
+
+
             </main>
         </div>
     );

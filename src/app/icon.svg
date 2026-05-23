@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Rounded Squircle Background Box -->
+  <rect x="32" y="32" width="448" height="448" rx="120" fill="#F0F2F8"/>
+  
+  <!-- Lightbulb and Glow Rays Group -->
+  <g stroke="#8B22EC" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Main Bulb Body -->
+    <path d="M192 340c0 20 12 36 32 36h64c20 0 32-16 32-36v-20c24-16 48-44 48-84 0-61.85-50.15-112-112-112S144 174.15 144 236c0 40 24 68 48 84z"/>
+    
+    <!-- Bulb Base/Screw Lines -->
+    <path d="M216 376h80"/>
+    <path d="M224 404h64"/>
+    <path d="M236 432h40"/>
+    
+    <!-- Glow Rays -->
+    <path d="M256 76v24"/>
+    <path d="M128 128l17 17"/>
+    <path d="M384 128l-17 17"/>
+    <path d="M76 256h24"/>
+    <path d="M412 256h24"/>
+  </g>
+</svg>
