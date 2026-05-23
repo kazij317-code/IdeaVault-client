@@ -16,7 +16,7 @@ This platform helps users organize their thoughts and discover new ideas in a cl
 
 
 ## 🌐 Live URL
-https://idea-vault-client-xi.vercel.app
+https://idea-vault-client-pi.vercel.app
 
 ---
 
